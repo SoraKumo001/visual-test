@@ -37,5 +37,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v2.4.0
         env:
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-          PUBLISH_BRANCH: regs/${{ github.ref }}
+          PUBLISH_BRANCH: ph-pages
           PUBLISH_DIR: __ph-pages__
