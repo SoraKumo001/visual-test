@@ -1,4 +1,3 @@
-#masterリポジトリ用デプロイ設定
 name: visual-test
 on:
   push:

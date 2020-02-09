@@ -1,3 +1,7 @@
 node_modules
 __screenshots__
+__expected
+__reg
+reg.json
 .next
+*.log
