@@ -22,7 +22,7 @@ jobs:
         run: yarn sc:capture
       - name: reg
         run: |
-          mkdir __reg__
+          mkdir -p __reg__/expected
           mv __screenshots__ __reg__/actual/
           git clone https://github.com/SoraKumo001/visual-test -b captures/refs/heads/master __reg2__/expected
           cp -Rf __reg2__/expected/* __reg__/expected
