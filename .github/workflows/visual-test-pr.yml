@@ -37,7 +37,7 @@ jobs:
           mv __reg__ __gh-pages__/$num
           set $(awk -F/ '{print $1, $2}' <<< $GITHUB_REPOSITORY)
           url=https://$1.github.io/$2/$num/
-          node .\.github\scripts\comment.js
+          node .github/scripts/comment.js
       - name: Save reg
         uses: peaceiris/actions-gh-pages@v2.4.0
         env:
