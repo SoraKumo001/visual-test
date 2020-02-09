@@ -22,8 +22,8 @@ jobs:
       - name: reg
         run: |
           git clone https://github.com/SoraKumo001/visual-test -b captures/refs/heads/master __reg__/expected
-          ls -R __reg__
           mv __screenshots__ __reg__/actual
+          ls -R __reg__
           yarn reg-cli  __reg__/actual  __reg__/expected __reg__/diff -R __reg__/index.html -J __reg__/reg.json || echo "REG"
           ls -R __reg__
       - name: Save reg
