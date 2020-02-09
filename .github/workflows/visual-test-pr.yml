@@ -1,4 +1,4 @@
-name: visual-test
+name: visual-test-pr
 on:
   pull_request:
 jobs:
@@ -6,5 +6,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: test
-        run: env
+      - name: cache node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: xbrowser-yarn-${{ hashFiles('**\yarn.lock') }}
+          restore-keys: xbrowser-yarn-
+      - name: Install Dependencies
+        run: yarn
+      - name: Build test
+        run: |
+          # yarn build
+      - name: Screnn capture
+        run: yarn sc:capture
+      - name: reg
+        run: |
+          git clone https://github.com/SoraKumo001/visual-test -b captures/refs/heads/master __reg__/expected
+          mv __screenshots__ __reg__/actual
+          yarn reg-cli  __reg__/actual  __reg__/expected __reg -R __reg__/index.html
+      - name: Save reg
+        uses: peaceiris/actions-gh-pages@v2.4.0
+        env:
+          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          PUBLISH_BRANCH: regs/${{ github.ref }}
+          PUBLISH_DIR: ./__reg__

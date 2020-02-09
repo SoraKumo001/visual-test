@@ -1,7 +1,6 @@
 node_modules
 __screenshots__
-__expected
-__reg
+__reg__
 reg.json
 .next
 *.log
