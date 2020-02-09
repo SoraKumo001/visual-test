@@ -24,8 +24,8 @@ jobs:
         run: |
           mkdir __reg__
           mv __screenshots__ __reg__/actual/
-          git clone https://github.com/${GITHUB_REPOSITORY} -b captures/refs/heads/${GITHUB_BASE_REF} __reg2__/expected
-          mv __reg2__/expected __reg__/expected
+          git clone https://github.com/${GITHUB_REPOSITORY} -b captures/refs/heads/${GITHUB_BASE_REF} __reg__/expected
+          rm -rf __reg__/expected/.git
           yarn reg-cli  __reg__/actual  __reg__/expected __reg__/diff -R __reg__/index.html -J __reg__/reg.json -I
       - name: Save reg
         uses: peaceiris/actions-gh-pages@v2.4.0
