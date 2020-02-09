@@ -28,11 +28,16 @@ jobs:
           rm -rf __reg__/expected/.git
           yarn reg-cli  __reg__/actual  __reg__/expected __reg__/diff -R __reg__/index.html -J __reg__/reg.json -I
       - name: create pege
+        env:
+          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         run: |
           git clone https://github.com/${GITHUB_REPOSITORY} -b gh-pages __gh-pages__ || mkdir __gh-pages__
           rm -rf __gh-pages__/${{ github.ref }}
           num=`echo ${{ github.ref }} | awk -F'/' '{print $3}'`
           mv __reg__ __gh-pages__/$num
+          set $(awk -F/ '{print $1, $2}' <<< $GITHUB_REPOSITORY)
+          url=https://$1.github.io/$2/$num/
+          curl -X POST -H 'Content-Type:application/json' -d "{\"body\":\"[$url]($url)\"}" https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${num}/comments?access_token=${PERSONAL_TOKEN}
       - name: Save reg
         uses: peaceiris/actions-gh-pages@v2.4.0
         env:
