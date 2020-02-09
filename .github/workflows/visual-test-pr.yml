@@ -22,12 +22,12 @@ jobs:
         run: yarn sc:capture
       - name: reg
         run: |
-          mkdir -p __reg__/actual
-          mv __screenshots__ __reg__/actual
+          mkdir __reg__
+          mv __screenshots__ __reg__/actual/
           git clone https://github.com/SoraKumo001/visual-test -b captures/refs/heads/master __reg2__/expected
           cp -Rf __reg2__/expected/* __reg__/expected
           yarn reg-cli  __reg__/actual  __reg__/expected __reg__/diff -R __reg__/index.html -J __reg__/reg.json -I
-          # cp -Rf __reg2__/expected/* __reg__/expected
+          cp -Rf __reg2__/expected/* __reg__/expected
       - name: Save reg
         uses: peaceiris/actions-gh-pages@v2.4.0
         env:
