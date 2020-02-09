@@ -29,7 +29,7 @@ jobs:
           yarn reg-cli  __reg__/actual  __reg__/expected __reg__/diff -R __reg__/index.html -J __reg__/reg.json -I
       - name: create pege
         run: |
-          git clone https://github.com/${GITHUB_REPOSITORY} -b gh-pages __ph-pages__ || true
+          git clone https://github.com/${GITHUB_REPOSITORY} -b gh-pages __ph-pages__ || mkdir __ph-pages__
           rm -rf __ph-pages__/${{ github.ref }}
           num=`echo ${{ github.ref }} | awk -F'/' '{print $3}'`
           mv __reg__ __ph-pages__/$num
