@@ -6,6 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: test
+        run: cat $GITHUB_EVENT_PATH
       - name: cache node_modules
         uses: actions/cache@v1
         with:
