@@ -6,8 +6,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: test
+      - name: Delete reg
         run: |
-          env
-          cat $GITHUB_EVENT_PATH
+          num=`echo $GITHUB_REF | sed -r 's/^refs\/pull\/(.?)\/merge/\1/'`
+          git clone https://github.com/${GITHUB_REPOSITORY} -b gh_pages __gh-pages__
+          rm -rf __gh-pages__/$num
+      - name: Save reg
+        uses: peaceiris/actions-gh-pages@v2.4.0
+        env:
+          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: __gh-pages__
