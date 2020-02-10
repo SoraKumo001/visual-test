@@ -15,15 +15,20 @@ jobs:
           key: xbrowser-yarn-${{ hashFiles('**\yarn.lock') }}
           restore-keys: xbrowser-yarn-
       - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
       - name: Build test
         run: |
           # yarn build
       - name: Screnn capture
         run: yarn sc:capture
+      - id: repo
+        run: |
+          REF=`echo $GITHUB_REF | sed 's/^refs\/heads\///'`
+          echo ::set-output name=name::{$REF}
       - name: Save capture
         uses: peaceiris/actions-gh-pages@v2.4.0
         env:
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-          PUBLISH_BRANCH: captures/${{ github.ref }}
+          PUBLISH_BRANCH: captures/${{ steps.repo.outputs.name }}
           PUBLISH_DIR: ./__screenshots__
