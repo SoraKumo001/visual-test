@@ -8,6 +8,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: delete visual test
         run: |
-          DELETE_BRANCH=`cat $GITHUB_EVENT_PATH | jq -r ".ref`
+          DELETE_BRANCH=`cat $GITHUB_EVENT_PATH | jq -r ".ref"`
           git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
           git push --delete origin captures/${DELETE_BRANCH}
