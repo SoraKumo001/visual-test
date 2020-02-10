@@ -12,5 +12,6 @@ jobs:
           DELETE_BRANCH: captures/${{ github.ref }}
         run: |
           env
+          cat $GITHUB_EVENT_PATH
           # git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
           # git push --delete origin captures/${GITHUB_REF}
