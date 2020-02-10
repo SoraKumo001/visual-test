@@ -37,9 +37,9 @@ jobs:
           git clone https://github.com/${GITHUB_REPOSITORY} -b gh-pages __gh-pages__ || mkdir __gh-pages__
           rm -rf __gh-pages__/$num
           node .github/scripts/comment.js
-          mv __reg__ __gh-pages__/$num
+          mv __reg__ __gh-pages__/$num/$GITHUB_RUN_ID
           set $(awk -F/ '{print $1, $2}' <<< $GITHUB_REPOSITORY)
-          url=https://$1.github.io/$2/$num/
+          url=https://$1.github.io/$2/$num/$GITHUB_RUN_ID
       - name: Save reg
         uses: peaceiris/actions-gh-pages@v2.4.0
         env:
