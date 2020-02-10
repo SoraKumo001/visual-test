@@ -18,6 +18,8 @@ jobs:
       - name: Build test
         run: |
           # yarn build
+          env
+          cat $GITHUB_EVENT_PATH
       - name: Screnn capture
         run: yarn sc:capture
       - name: reg
