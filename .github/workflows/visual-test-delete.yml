@@ -11,5 +11,6 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
           DELETE_BRANCH: captures/${{ github.ref }}
         run: |
-          git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
-          git push --delete origin captures/${GITHUB_REF}
+          env
+          # git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
+          # git push --delete origin captures/${GITHUB_REF}
