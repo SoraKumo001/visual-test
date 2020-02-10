@@ -1,6 +1,7 @@
 name: visual-test-delete
 on:
   delete:
+    branches-ignore: 'captures/**'
 jobs:
   build:
     runs-on: ubuntu-latest
