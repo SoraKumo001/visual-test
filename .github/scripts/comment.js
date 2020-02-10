@@ -12,7 +12,7 @@ const body = `
 Passed: ${jsonObject.passedItems.length}
 Faild: ${jsonObject.failedItems.length}
 New: ${jsonObject.newItems.length}
-Delete: ${jsonObject.deleteItems.length}
+Delete: ${jsonObject.deletedItems.length}
 `;
 
 request.post(
