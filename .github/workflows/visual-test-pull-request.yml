@@ -1,4 +1,4 @@
-name: visual-test-pr
+name: visual-test-pull-request
 on:
   pull_request:
 jobs:
