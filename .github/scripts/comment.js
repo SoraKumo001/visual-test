@@ -2,10 +2,15 @@ const fs = require("fs");
 const request = require("request");
 const jsonObject = JSON.parse(fs.readFileSync("./__reg__/reg.json", "utf8"));
 
-const { GITHUB_REF, GITHUB_REPOSITORY, PERSONAL_TOKEN } = process.env;
+const {
+  GITHUB_REF,
+  GITHUB_REPOSITORY,
+  GITHUB_RUN_ID,
+  PERSONAL_TOKEN
+} = process.env;
 const num = GITHUB_REF.split("/")[2];
 const rep = GITHUB_REPOSITORY.split("/");
-const url = `https://${rep[0]}.github.io/${rep[1]}/${num}/`;
+const url = `https://${rep[0]}.github.io/${rep[1]}/${num}/${GITHUB_RUN_ID}`;
 
 const body = `
 [${url}](${url})
@@ -24,7 +29,7 @@ request.post(
     },
     json: { body }
   },
-  function(error, response, body) {
+  function(_error, _response, body) {
     console.log(body);
   }
 );
