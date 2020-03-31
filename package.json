@@ -14,7 +14,7 @@
     "reg": "yarn reg-cli __screenshots__ __expected __reg -R __reg/index.html"
   },
   "dependencies": {
-    "next": "^9.2.1"
+    "next": "^9.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
